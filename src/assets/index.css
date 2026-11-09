@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+@theme {
+  --color-monokai-bg: #FAF8F5;
+  --color-monokai-sidebar: #F0EDE6;
+  --color-monokai-text: #2C292D;
+  --color-monokai-orange: #F69D50;
+  --color-monokai-yellow: #E58A00;
+  --color-monokai-green: #6B9E00;
+  --color-monokai-purple: #A54181;
+  --color-monokai-pink: #C74182;
+  --color-monokai-blue: #1A8CFF;
+  --color-monokai-cyan: #0098B1;
+  --color-monokai-muted: #8F8B8B;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+@keyframes reverse-spin {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-reverse-spin {
+  animation: reverse-spin 10s linear infinite;
+}
+
+@keyframes spin-self {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+.animate-spin-self {
+  animation: spin-self 10s linear infinite;
+}
+
+
