@@ -2,6 +2,8 @@ import Header from './components/layout/Header'
 import HeroSection from './components/hero/HeroSection'
 import SkillsSection from './components/skills/SkillsSection'
 import EducationSection from './components/EducationSection'
+import ExperienceTerminal from './components/ExperienceTerminal'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -11,7 +13,9 @@ function App() {
         <HeroSection />
         <SkillsSection />
         <EducationSection />
+        <ExperienceTerminal />
       </main>
+      <Footer />
     </div>
   )
 }
