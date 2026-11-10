@@ -10,7 +10,7 @@ const Header: React.FC<HeaderProps> = () => {
   const navLinks = [
     { label: 'Inicio', href: '#inicio', active: true },
     { label: 'Habilidades', href: '#habilidades', active: false },
-    { label: 'Sobre mí', href: '#sobre-mi', active: false },
+    { label: 'Educacion', href: '#education', active: false },
     { label: 'Experiencia', href: '#experiencia', active: false },
     { label: 'Proyectos', href: '#proyectos', active: false },
     { label: 'Contacto', href: '#contacto', active: false },

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Header from '../layout/Header';
 import StatusBar from '../layout/StatusBar';
 import SkillsCubeAnimation from './SkillsCubeAnimation';
 import HeroBackgroundAnimation from './HeroBackgroundAnimation';
@@ -28,8 +27,6 @@ const HeroSection: React.FC = () => {
     <div className="min-h-screen bg-monokai-sidebar flex flex-col justify-between font-mono text-monokai-text selection:bg-monokai-pink selection:text-white relative overflow-hidden">
       {/* Background Animation */}
       <HeroBackgroundAnimation />
-
-      <Header />
 
       <div id="inicio" ref={containerRef} className="flex-grow flex flex-col md:flex-row relative z-10">
         {/* Editor line numbers column */}
