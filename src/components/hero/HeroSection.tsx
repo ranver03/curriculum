@@ -4,6 +4,55 @@ import SkillsCubeAnimation from './SkillsCubeAnimation';
 import HeroBackgroundAnimation from './HeroBackgroundAnimation';
 import { cvData } from '../../data/cvData';
 
+const DownloadDropdown = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  return (
+    <div className="relative" ref={dropdownRef}>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="px-6 py-3 bg-monokai-sidebar border border-monokai-muted text-monokai-text rounded-md font-bold hover:bg-white hover:text-black transition-all transform hover:-translate-y-0.5 shadow-sm"
+      >
+        Descargar CV (PDF)
+      </button>
+      {isOpen && (
+        <div className="absolute bottom-full mb-2 left-0 w-64 bg-monokai-bg border border-monokai-muted rounded-md shadow-2xl z-50 p-2 space-y-1">
+          <a
+            href="/curriculum/docs/curriculum/Curriculum.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block px-4 py-2 text-sm text-monokai-text hover:bg-monokai-sidebar rounded transition-colors"
+            onClick={() => setIsOpen(false)}
+          >
+            Curriculum Principal
+          </a>
+          <a
+            href="/curriculum/docs/curriculum/Curriculum Imprimible.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block px-4 py-2 text-sm text-monokai-text hover:bg-monokai-sidebar rounded transition-colors"
+            onClick={() => setIsOpen(false)}
+          >
+            Versión Imprimible
+          </a>
+        </div>
+      )}
+    </div>
+  );
+};
+
+
 const HeroSection: React.FC = () => {
   const [lineCount, setLineCount] = useState(24);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -82,12 +131,7 @@ const HeroSection: React.FC = () => {
                 <span>Ver Experiencia</span>
                 <span>→</span>
               </a>
-              <a 
-                href="#contacto"
-                className="px-6 py-3 bg-monokai-sidebar border border-monokai-muted text-monokai-text rounded-md font-bold hover:bg-white transition-all transform hover:-translate-y-0.5 shadow-sm"
-              >
-                Descargar CV (PDF)
-              </a>
+              <DownloadDropdown />
             </div>
           </div>
 

@@ -18,7 +18,7 @@ export const experienceData: Experience[] = [
   },
   {
     role: 'Coordinador de Sistemas',
-    year: '2019 — Actualidad',
+    year: '2019 — 2026',
     company: 'Federación Venezolana de Fútbol (FVF)',
     description: [
       'Coordinar y supervisar proyectos de desarrollo y automatización, consultas a ERP y tests de sistemas de terceros.',

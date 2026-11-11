@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 interface HeaderProps {
   currentTab?: string;
@@ -6,14 +6,44 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('#inicio');
+  const [cvDropdownOpen, setCvDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['#inicio', '#habilidades', '#education', '#experiencia', '#contacto'];
+      for (const section of sections) {
+        const element = document.querySelector(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top >= 0 && rect.top <= 300) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setCvDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const navLinks = [
-    { label: 'Inicio', href: '#inicio', active: true },
-    { label: 'Habilidades', href: '#habilidades', active: false },
-    { label: 'Educacion', href: '#education', active: false },
-    { label: 'Experiencia', href: '#experiencia', active: false },
-    { label: 'Proyectos', href: '#proyectos', active: false },
-    { label: 'Contacto', href: '#contacto', active: false },
+    { label: 'Inicio', href: '#inicio' },
+    { label: 'Habilidades', href: '#habilidades' },
+    { label: 'Educacion', href: '#education' },
+    { label: 'Experiencia', href: '#experiencia' },
+    { label: 'Contacto', href: '#contacto' },
   ];
 
   return (
@@ -46,7 +76,7 @@ const Header: React.FC<HeaderProps> = () => {
                 key={link.label}
                 href={link.href}
                 className={`px-3 py-1.5 rounded-md transition-all duration-200 ${
-                  link.active
+                  activeSection === link.href
                     ? 'bg-monokai-sidebar text-monokai-pink font-semibold border-b-2 border-monokai-pink'
                     : 'text-monokai-text hover:text-monokai-blue hover:bg-monokai-sidebar/60'
                 }`}
@@ -58,13 +88,35 @@ const Header: React.FC<HeaderProps> = () => {
           </nav>
 
           {/* Right Action CTA Button */}
-          <div className="hidden md:flex items-center space-x-3">
-            <a
-              href="#contacto"
-              className="px-4 py-1.5 text-xs font-mono font-bold rounded-md text-white bg-monokai-blue hover:bg-blue-600 transition-all shadow hover:shadow-md transform hover:-translate-y-0.5"
+          <div className="hidden md:flex items-center space-x-3 relative" ref={dropdownRef}>
+            <button
+              onClick={() => setCvDropdownOpen(!cvDropdownOpen)}
+              className="px-4 py-1.5 text-xs font-mono font-bold rounded-md text-white bg-monokai-blue hover:bg-blue-600 transition-all shadow hover:shadow-md"
             >
               Descargar CV
-            </a>
+            </button>
+            {cvDropdownOpen && (
+              <div className="absolute top-full mt-2 right-0 w-56 bg-monokai-bg border border-monokai-muted rounded-md shadow-2xl z-50 p-2 space-y-1">
+                <a
+                  href="/curriculum/docs/curriculum/Curriculum.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block px-4 py-2 text-sm text-monokai-text hover:bg-monokai-sidebar rounded transition-colors"
+                  onClick={() => setCvDropdownOpen(false)}
+                >
+                  Curriculum Principal
+                </a>
+                <a
+                  href="/curriculum/docs/curriculum/Curriculum Imprimible.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block px-4 py-2 text-sm text-monokai-text hover:bg-monokai-sidebar rounded transition-colors"
+                  onClick={() => setCvDropdownOpen(false)}
+                >
+                  Versión Imprimible
+                </a>
+              </div>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -94,9 +146,12 @@ const Header: React.FC<HeaderProps> = () => {
             <a
               key={link.label}
               href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={() => {
+                setMobileMenuOpen(false);
+                setActiveSection(link.href);
+              }}
               className={`block px-3 py-2 rounded-md ${
-                link.active
+                activeSection === link.href
                   ? 'bg-monokai-sidebar text-monokai-pink font-semibold'
                   : 'text-monokai-text hover:bg-monokai-sidebar/60'
               }`}
@@ -108,7 +163,10 @@ const Header: React.FC<HeaderProps> = () => {
           <div className="pt-2">
             <a
               href="#contacto"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={() => {
+                setMobileMenuOpen(false);
+                setActiveSection('#contacto');
+              }}
               className="block text-center w-full px-4 py-2 text-xs font-bold text-white bg-monokai-blue rounded-md hover:bg-blue-600"
             >
               Descargar CV

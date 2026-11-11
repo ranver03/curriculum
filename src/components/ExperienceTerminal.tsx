@@ -53,7 +53,7 @@ const ExperienceTerminal: React.FC = () => {
   }, [hasStarted]);
 
   return (
-    <section ref={sectionRef} id="experiencia" className="min-h-screen flex items-center py-20 bg-monokai-sidebar scroll-mt-[56px]">
+    <section ref={sectionRef} id="experiencia" className="min-h-screen flex items-center py-20 bg-monokai-bg scroll-mt-[56px]">
       <div className="container mx-auto px-4">
         <div className="bg-[#1e1e1e] rounded-xl shadow-2xl overflow-hidden border border-monokai-muted/30 font-mono text-sm md:text-base h-[600px] flex flex-col">
           {/* Header */}
@@ -78,7 +78,6 @@ const ExperienceTerminal: React.FC = () => {
           </div>
         </div>
       </div>
-
       <style dangerouslySetInnerHTML={{ __html: `
         .custom-scrollbar::-webkit-scrollbar {
           width: 8px;
