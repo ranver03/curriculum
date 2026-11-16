@@ -11,7 +11,7 @@ export const experienceData: Experience[] = [
     year: '2026',
     company: 'Ramo Ecuador',
     description: [
-      'Desarrollo de soluciones personalizadas, add-ons e integraciones para SAP Business One.',
+      'Desarrollo de soluciones personalizadas, addons e integraciones para SAP Business One.',
       'Tecnologías: C#, .NET, B1UP, DI API y SAP HANA.',
       'Automatización de procesos de negocio, consultas y reportes dentro del ERP.'
     ],

@@ -3,7 +3,7 @@ import type { CVData } from "../types";
 export const cvData: CVData = {
   name: "Rafael Velásquez",
   title: "Ingeniero en Informática",
-  subtitle: "+20 años de experiencia transformando sistemas complejos en soluciones estables. Especialista en Backend, C# .NET, PHP/Laravel y ecosistemas ERP (SAP Business One).",
+  subtitle: "+15 años de experiencia transformando sistemas complejos en soluciones estables. Especialista en Backend, C# .NET, PHP/Laravel y ecosistemas ERP (SAP Business One).",
   location: "Caracas, Venezuela",
   contact: {
     email: "rafahel171@gmail.com",

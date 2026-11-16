@@ -23,13 +23,13 @@ interface CourseCertification {
 export const universityEducation: UniversityEducation[] = [
   {
     title: 'Ingeniero en Informática',
-    institution: 'Instituto Universitario Politécnico Santiago Mariño',
+    institution: 'Instituto Universitario de Tecnología del Oeste Mariscal Sucre',
     year: '2019',
   },
   {
     title: 'TSU en Informática',
     institution: 'Instituto Universitario de Tecnología Venezuela',
-    year: '2007',
+    year: '2010',
   },
 ];
 
